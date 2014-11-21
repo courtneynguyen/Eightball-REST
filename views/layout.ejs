@@ -1,5 +1,9 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
 <html lang="en" ng-app="eightApp">
+=======
+<html lang="en">
+>>>>>>> 8193b2ab5fe74d959b24f25d8054f98a174844b9
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,6 +19,7 @@
 
   </head>
 
+<<<<<<< HEAD
   <body ng-controller="ApplicationController">
 					<div ui-view="navigation"></div>
     
@@ -25,6 +30,74 @@
         </div>
         <div ui-view="main" class="col-sm-9 col-md-3 main">
 								
+=======
+  <body>
+
+    <nav class="navbar navbar-inverse" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Project name</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Settings</a></li>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Help</a></li>
+          </ul>
+          <form class="navbar-form navbar-right">
+            <input type="text" class="form-control" placeholder="Search...">
+          </form>
+        </div>
+      </div>
+    </nav>
+
+<div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li class="active"><a href="#">Admin</a></li>
+            <li><a href="/">Add Product</a></li>
+            <li><a href="/admin/products">View Products</a></li>
+            <li><a href="#">Export</a></li>
+          </ul>
+          <!-- <ul class="nav nav-sidebar">
+            <li><a href="">Nav item</a></li>
+            <li><a href="">Nav item again</a></li>
+            <li><a href="">One more nav</a></li>
+            <li><a href="">Another nav item</a></li>
+            <li><a href="">More navigation</a></li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li><a href="">Nav item again</a></li>
+            <li><a href="">One more nav</a></li>
+            <li><a href="">Another nav item</a></li>
+          </ul> -->
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+								<h1 class="page-header">Admin Page</h1>
+
+								<h4>Add a Product</h4>
+								<form method="POST" action="/products">
+
+												<input type="text" name="name" placeholder="Name"/><br />
+												<textarea name="description" placeholder="Description"></textarea> <br/>
+												<input name="price" type="number" min="0" value="0"/> <br />
+												<input type="radio" name="active" value="false">Inactive<br>
+												<input type="radio" name="active" checked value="true">Active
+												<p>
+
+												<input type="submit" value="Create Product" />
+												</p>
+								</form>
+
+>>>>>>> 8193b2ab5fe74d959b24f25d8054f98a174844b9
          </div>
 
          
@@ -32,6 +105,7 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
+<<<<<<< HEAD
     <script src="/bower_components/jquery/dist/jquery.min.js"></script>
 		<script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 		<script src="/bower_components/angular/angular.js"></script>
@@ -44,6 +118,10 @@
 		<script src="/packages/responses/responseCtrl.js"></script>
 		<script src="/packages/users/userCtrl.js"></script>
 
+=======
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+>>>>>>> 8193b2ab5fe74d959b24f25d8054f98a174844b9
   </body>
 </html>
 

@@ -1,27 +1,42 @@
 {
+<<<<<<< HEAD
   "name": "Eightball-REST",
   "main": "index.js",
   "version": "0.0.0",
   "homepage": "https://github.com/courtneynguyen/Eightball-REST",
+=======
+  "name": "crud",
+  "main": "index.js",
+  "version": "0.0.0",
+>>>>>>> 8193b2ab5fe74d959b24f25d8054f98a174844b9
   "moduleType": [
     "amd",
     "globals",
     "node"
   ],
+<<<<<<< HEAD
   "authors": [
     "Courtney Nguyen"
   ],
   "license": "MIT",
+=======
+  "license": "MIT",
+  "private": true,
+>>>>>>> 8193b2ab5fe74d959b24f25d8054f98a174844b9
   "ignore": [
     "**/.*",
     "node_modules",
     "bower_components",
     "test",
     "tests"
+<<<<<<< HEAD
   ],
   "dependencies": {
     "bootstrap": "~3.3.1",
     "angularjs": "~1.3.2",
     "angular-ui-router": "~0.2.12"
   }
+=======
+  ]
+>>>>>>> 8193b2ab5fe74d959b24f25d8054f98a174844b9
 }
