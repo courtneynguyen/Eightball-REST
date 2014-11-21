@@ -1,0 +1,27 @@
+{
+  "name": "Eightball-REST",
+  "main": "index.js",
+  "version": "0.0.0",
+  "homepage": "https://github.com/courtneynguyen/Eightball-REST",
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "authors": [
+    "Courtney Nguyen"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.1",
+    "angularjs": "~1.3.2",
+    "angular-ui-router": "~0.2.12"
+  }
+}

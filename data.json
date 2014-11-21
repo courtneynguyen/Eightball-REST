@@ -1,0 +1,22 @@
+[
+{question:'It is certain',isDefault:true},
+{question:'It is decidedly so',isDefault:true},
+{question:'Without a doubt',isDefault:true},
+{question:'Yes definitely',isDefault:true},
+{question:'You may rely on it',isDefault:true},
+{question:'As I see it, yes',isDefault:true},
+{question:'Most likely',isDefault:true},
+{question:'Outlook good',isDefault:true},
+{question:'Yes',isDefault:true},
+{question:'Signs point to yes',isDefault:true},
+{question:'Reply hazy try again',isDefault:true},
+{question:'Ask again later',isDefault:true},
+{question:'Better not tell you now',isDefault:true},
+{question:'Cannot predict now',isDefault:true},
+{question:'Concentrate and ask again',isDefault:true},
+{question:'Don\'t count on it',isDefault:true},
+{question:'My reply is no',isDefault:true},
+{question:'My sources say no',isDefault:true},
+{question:'Outlook not so good',isDefault:true},
+{question:'Very doubtful',isDefault:true}
+]

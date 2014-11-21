@@ -1,0 +1,11 @@
+<div ng-controller="userController" ng-init="getUser()">
+<h3>Change Users Password</h3>
+
+<form>
+				<h5>Original:</h5>
+				<input ng-model="origin.password" type="text" value="{{origin.password}}" disabled />
+				<input type="text" ng-model="user.password" value="{{user.password}}" />
+				<input type="submit" ng-model="user" ng-click="submitUser(user)" />
+
+</form>
+</div>

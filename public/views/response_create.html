@@ -1,0 +1,10 @@
+<div ng-controller="responseController" ng-init="getResponse()">
+				<h2>Custom Response</h2>
+				<form>
+								<h4>Original:</h4>
+								<input type="text" value="{{origin.question}}" disabled />
+					<input type="text" ng-model="question.question" value="{{question.question}}" />
+					<input type="submit" class="btn btn-success" ng-click="submitResponse(question)" />
+	</form>
+</div>
+
