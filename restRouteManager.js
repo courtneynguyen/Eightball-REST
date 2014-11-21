@@ -1,12 +1,8 @@
 var express = require('express');
 var mongoose = require('mongoose');
-<<<<<<< HEAD
 var Response = require('./models/response.js');
 // var auth = require('./auth.js');
 var auth = function(req, res, next){ if (!req.isAuthenticated()) res.send(401); else next(); }; 
-=======
-
->>>>>>> 8193b2ab5fe74d959b24f25d8054f98a174844b9
 function handleError(err){
 
 };
@@ -18,7 +14,6 @@ module.exports = function(resourceManager){
 
 									var router = express.Router();
 
-<<<<<<< HEAD
 
 								router.get('/api/'+name+'/:id', auth, function(req, res){
 													var id = req.params.id;
@@ -46,18 +41,10 @@ module.exports = function(resourceManager){
 																if(err) res.status(500).send("test");
 																console.log(obj);
 																res.json(obj);															
-=======
-									router.post('/'+name, function(req, res){
-												resourceManager.models[name].create(req.body, function(err, obj){
-																
-																if(err) res.status(500).send(err);
-																res.redirect('../products');															
->>>>>>> 8193b2ab5fe74d959b24f25d8054f98a174844b9
 															//	res.send(obj);
 																
 												});	
 									});
-<<<<<<< HEAD
 									router.get('/api/responses/random', function(req, res){
 										Response.random(function(err, resp){
 											res.json(resp);				
@@ -101,42 +88,6 @@ module.exports = function(resourceManager){
 												});	
 									});
 								
-=======
-									router.get('/'+name, function(req, res){
-												resourceManager.models[name].find({}, function(err, obj){
-																
-																if(err) res.status(500).send(err);
-																res.send({status:'200', products:obj});															
-															//	res.send(obj);
-																
-												});	
-									});
-									router.post('/'+name+'/:id/edit', function(req, res){
-													var id = req.params.id;
-												resourceManager.models[name].findOne({_id: mongoose.Types.ObjectId(id)}, function(err, obj){
-									
-																if(err) res.status(500).send(err);
-
-																console.log(obj);
-																obj.name = req.body.name || obj.name;
-																obj.description = req.body.description || obj.description;
-																obj.price = req.body.price || obj.price;
-																obj.active = req.body.active || obj.active;
-																obj.save();	
-																res.redirect('/admin/products');															
-															//	res.send(obj);
-																
-												});	
-									});
-								router.get('/'+name+'/:id/', function(req, res){
-													var id = req.params.id;
-												resourceManager.models[name].remove({_id: mongoose.Types.ObjectId(id)}, function(err, obj){
-
-													if(err) console.log(err);
-													res.redirect('/admin/products');				
-												});
-								});
->>>>>>> 8193b2ab5fe74d959b24f25d8054f98a174844b9
 									return router;
 					}
 				}
