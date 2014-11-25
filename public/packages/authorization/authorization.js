@@ -18,13 +18,19 @@ authService.login = function (credentials) {
     return $http
       .post('/login', credentials)
       .then(function (res) {
-							console.log('what is response on login through passport?');
-							console.log(res);
         Session.create(res.data.sessionID, res.data.user._id,
                  				"loggedInUser");
         return res.data.user;
       });
   };
+
+authService.logout = function (){
+	return $http
+				.post('/logout')
+				.then(function (req, res){
+					$sta				
+				})
+};
 
   authService.isAuthenticated = function () {
     return !!Session.userId;
@@ -57,6 +63,11 @@ myApp.controller('authorizationController', ['$scope', '$http','$rootScope', '$l
       $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
     });	
 		}
+	$scope.logout = function(){i
+$state.currentUser = null;
+		AurthService.logout();
+		$state.go('home');
+			}
 
 }]);
 

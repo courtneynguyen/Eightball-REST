@@ -1,6 +1,6 @@
 var myApp = angular.module('eightApp');
 				
-myApp.factory('Responses', ['$resource', function($resource){
+myApp.factory('Responses', ['$resource', '$q', function($resource, $q){
 		return{
 			random: $resource('/api/responses/random', {
 				get: {method: 'GET', isArray:false}					
@@ -29,6 +29,10 @@ myApp.factory('Responses', ['$resource', function($resource){
 			// })
 		//})
 }		
+}]);
+
+myApp.factory('Histories', ['$resource', function($resource){
+	return $resource('/api/histories');				
 }]);
 
 myApp.factory('ResponseList', function(){
@@ -66,34 +70,69 @@ myApp.factory('ResponseList', function(){
 				
 })
 				
- myApp.controller('responseController',['$scope', '$stateParams', '$http', '$q', 'Responses', 'ResponseList', function($scope, $stateParams, $http,$q, Responses, ResponseList){
+ myApp.controller('responseController',['$scope', '$stateParams', '$http', '$q', 'Responses', 'ResponseList', 'Histories', function($scope, $stateParams, $http,$q, Responses, ResponseList, Histories){
  	$scope.name = 'Courtney';
 	$scope.magicEight = '';
 	$scope.responses=null;
-
+	
 	$scope.rollDice = function(val){
 		console.log('val',val);
-		if(val !== undefined)
-	  $scope.magicEight = Responses.random.get();
+		if(val !== undefined){
+		
+		Responses.random.get(function(obj){
+						$scope.magicEight = obj;
+		if($scope.currentUser){
+						console.log('saving response');
+						console.log(obj);
+			var newHistory = new Histories({
+			userId: $scope.currentUser._id,
+			response: obj.question,
+				question: val
+		});
+
+		newHistory.$save();
+		}
+		});
+
+		}
  		$scope.questErr = "Please enter something!";
 	};
+
+
+		
+
 	$scope.getResponses = function(){
 		Responses.allResponses.query(function(responses){
-						var respList = responses;
-						console.log(respList);
-		for(var x = 0; x < respList.length; x++){
-			var resp = ResponseList.getResponseCount(respList[x].question);
-			respList[x].count = resp;
-		}
-		$scope.responses = respList;
+			var respList = responses;
+			$http.get('/api/histories/count').success(function(err, status, headers){
+							console.log('inside http get for count');
+				console.log(err);
 
+				var found = false;
+				for(var x=0; x< responses.length; x++){
+								found = false;
+					for(var i=0; i < err.length; i++){
+								if(respList[x].question === err[i]._id){
+										respList[x].count = err[i].total_response;
+										found = true;
+								}
+								if(!found)respList[x].count = 0;
+					}
+				}
+					$scope.responses = respList;
+
+			}).
+			error(function(err, status, headers){
+				console.log(err);
+			});	
+
+					
 		});
 	};
 	$scope.submitResponse = function(val){
 		var id = $stateParams.id;
 
 		if(id){
-		console.log('received value ', val.question);
 		Responses.updateResponse.update({id:id}, val);
 		$scope.origin = val;
 		// response_service.$save({_id: id, question: val.question}, function(err, response){
@@ -102,13 +141,11 @@ myApp.factory('ResponseList', function(){
 		// });
 		}
 		else{
-			console.log('saving');
 		$http.post('/api/responses/', val).success(function(err, status, headers){
-console.log(headers);
 		}).
-	error(function(err, status, headers){
+		error(function(err, status, headers){
 		console.log(err);
-	});	
+			});	
 		}
 	};
 	$scope.deleteResponse = function(response){
@@ -125,7 +162,6 @@ console.log(headers);
 
 	};
 	$scope.getResponse = function(){
-		console.log($stateParams);
 		var id= $stateParams.id;
 		if(id !== undefined && id !== null){
 		$scope.question = Responses.single.get({id:id}); 
@@ -137,9 +173,20 @@ console.log(headers);
 		}	
 	};
 
+		$scope.histories= [{question:'test', response:'haha'}];
 	$scope.getHistory = function(){
-		$scope.history = ResponseList.getHistory();
-	}
+					console.log('i was called!', $scope.currentUser._id);
+	$scope.histories = Histories.query({user:$scope.currentUser._id});
+					// $scope.histories = Histories.getHistoryByUser.query({user:$scope.currentUser._id});
+	 // $scope.histories.$promise.then(function(data){
+		// console.log(data);			 
+	 // });
+		
+		// , function(response){
+		// 		$scope.histories = response;				
+		// });
+
+	};
 
 	$scope.addHistory = function(ra){
 			ResponseList.addHistory(ra);

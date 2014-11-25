@@ -16,14 +16,12 @@ eightApp.constant('USER_ROLES', {
   guest: 'guest'
 })
 
-eightApp.config(function($stateProvider, $urlRouterProvider, $httpProvider, USER_ROLES) {
+eightApp.config(function($stateProvider, $urlRouterProvider, $httpProvider, USER_ROLES, AUTH_EVENTS) {
  
 	$httpProvider.interceptors.push(function($q, $location){
 		return function(promise){
 			return promise.then(
 							function(response){
-											console.log('what is response');
-											console.log(response);
 											return response;
 							},
 							// error: check error status
@@ -94,7 +92,7 @@ eightApp.config(function($stateProvider, $urlRouterProvider, $httpProvider, USER
 		})
 		.
 		state('history', {
-				url:'/history',
+				url:'/histories',
 
 			  data: {
       	authorizedRoles: [USER_ROLES.admin, USER_ROLES.loggedInUser]
@@ -229,8 +227,10 @@ state('logout', {
      });
 });
 
-eightApp.run(function($rootScope,$state,AuthService){
+eightApp.run(function($rootScope,$state,AuthService, AUTH_EVENTS){
  $rootScope.$on('$stateChangeStart', function (event, next) {
+				 console.log('what is next??');
+				 console.log(next);
     var authorizedRoles = next.data.authorizedRoles;
     if (!AuthService.isAuthorized(authorizedRoles)) {
       event.preventDefault();
@@ -242,5 +242,8 @@ eightApp.run(function($rootScope,$state,AuthService){
         $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
       }
     }
+		else{
+			
+		}
   });
 });

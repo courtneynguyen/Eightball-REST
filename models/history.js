@@ -1,5 +1,5 @@
 var mongoose = require('mongoose'),
-		Schema = mongoose.Schema();
+		Schema = mongoose.Schema;
 
 
 var historySchema = new Schema({
@@ -7,9 +7,8 @@ var historySchema = new Schema({
 					type: Schema.ObjectId,
 					ref: 'User'
 				},
-				responseId: {
-					type: Schema.ObjectId,
-					ref: 'Response'
+				response: {
+					type: String
 				},
 				question: {
 					type: String
@@ -20,4 +19,7 @@ var historySchema = new Schema({
     		}		
 });
 
-mongoose.model('History', historySchema, 'histories');
+var History = mongoose.model('History', historySchema, 'histories');
+
+
+module.exports = History;

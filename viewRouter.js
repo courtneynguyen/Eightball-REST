@@ -51,8 +51,11 @@ router.get('/loggedin', function(req, res){
 });
 
 router.post('/logout', function(req, res){
+	console.log('logging out');
+	console.log(req);
 	req.logOut();
-	res.redirect('/#/');	
+	
+	//res.redirect('/#/');	
 });
 
 module.exports = function(resourceManager, app){
