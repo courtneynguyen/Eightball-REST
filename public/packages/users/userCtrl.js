@@ -31,7 +31,6 @@ myApp.factory('Users', ['$resource', function($resource){
 		$scope.origin = val;
 		}
 		else{
-			console.log('saving');
 				var newUser = new Users(val);
 
 		$scope.user = newUser.$save();		
@@ -40,8 +39,9 @@ myApp.factory('Users', ['$resource', function($resource){
 	$scope.deleteUser = function(user){
 
 			user.$delete(function(){
-				console.log('');
 			});
+
+			$scope.$digest();
 			//		Users.$remove({id:id}, val);
 			// $http.delete('/api/users/' + id).success(function(err, status, headers){
 			// 				console.log('REMOVED');

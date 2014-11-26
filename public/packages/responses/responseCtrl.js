@@ -43,31 +43,21 @@ myApp.factory('ResponseList', function(){
 				getHistory : function(){
 						return raList;
 				},
-				addHistory : function(ra){
-						raList.push(val);
+				setHistory : function(val){
+					raList = val;
 				},
-				addResponseCount : function(val){
-								var found = false;
-						for(var x = 0; x< responseCount.length; x++){
-							if(responseCount[x].question === val){
-								responseCount[x].count++;
-								found = true;
-							}
+				removeHistory : function(response){
+					var foundResponse = null;
+					for(var x = 0; x< raList.length; x++){
+						if(response.question){
+								if(response.question === raList[x].question){
+										console.log('response being removed:',raList[x].question);
+										raList.splice(x,1);
+								}
 						}
-						if(!found){
-							responseCount.push({question: val, count: 1});
-						}
-				},
-				getResponseCount : function(response){
-					for(var x=0; x< responseCount.length; x++){
-						if(responseCount[x].question === response)return responseCount[x].count;
 					}
-					return 0;
 				}
-
-
-}				
-				
+			}	
 })
 				
  myApp.controller('responseController',['$scope', '$stateParams', '$http', '$q', 'Responses', 'ResponseList', 'Histories', function($scope, $stateParams, $http,$q, Responses, ResponseList, Histories){
@@ -119,7 +109,9 @@ myApp.factory('ResponseList', function(){
 								if(!found)respList[x].count = 0;
 					}
 				}
-					$scope.responses = respList;
+					ResponseList.setHistory(respList);
+
+					$scope.responses = ResponseList.getHistory();
 
 			}).
 			error(function(err, status, headers){
@@ -154,7 +146,11 @@ myApp.factory('ResponseList', function(){
 			// 	console.log('REMOVED RESPONSE');				
 			// });
 			//
-		Responses.deleteResponse.del({id: response._id}, response);
+		Responses.deleteResponse.del({id: response._id}, function(response2){
+						console.log('clicked deleteResponse');
+						console.log(response2);
+						ResponseList.removeHistory(response);
+		});
 		// Responses.remove({id:response._id}, response);
 		// 	 $http.delete('/api/responses/' + response._id).success(function(err, status, headers){
 		// 	 				console.log('REMOVED');
