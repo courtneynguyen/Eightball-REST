@@ -12,7 +12,7 @@ myApp.service('Session', function () {
   };
   return this;
 });
-myApp.factory("AuthService", function($http,Session) {
+myApp.factory("AuthService", function($http,Session,$state) {
 				var authService = {};
 authService.login = function (credentials) {
     return $http
@@ -26,10 +26,13 @@ authService.login = function (credentials) {
 
 authService.logout = function (){
 	return $http
-				.post('/logout')
-				.then(function (req, res){
-					$sta				
-				})
+				.post('/logout').then(function(res){
+					console.log('entered after for /logout in AuthService');
+					Session.destroy();
+					$state.go('home');
+				//	location = "/#/";	
+							
+				});
 };
 
   authService.isAuthenticated = function () {
@@ -56,17 +59,19 @@ myApp.controller('authorizationController', ['$scope', '$http','$rootScope', '$l
   $scope.login = function (credentials) {
     AuthService.login(credentials).then(function (user) {
        $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
-			 console.log('passed');
        $scope.setCurrentUser(user);
-				$state.go('loggedin');
+			 $state.go('loggedin');
+					
 		}, function () {
       $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
+			
+	
     });	
 		}
-	$scope.logout = function(){i
-$state.currentUser = null;
-		AurthService.logout();
-		$state.go('home');
+	$scope.logout = function(){
+					console.log('made it here Kernel!');
+		AuthService.logout();
+//		$state.go('home');
 			}
 
 }]);

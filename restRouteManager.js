@@ -14,12 +14,26 @@ module.exports = function(resourceManager){
 					addRouter: function(name){
 
 									var router = express.Router();
-
+									router.get('/api/responses/random', function(req, res){
+										Response.random(function(err, resp){
+											res.json(resp);				
+										});
+									});
 									router.all('/api/*',function(req,res,next){
     							if(req.isAuthenticated()){
         						next();
     							}else{
-        						next(new Error(401)); // 401 Not Authorized
+
+									console.log('req.url:',req.url);
+									if(req.url.indexOf('random') > -1){
+										console.log('inside indexOf');
+										console.log(res);
+										next(res);
+									}
+									else{
+										res.send('401');
+										}
+        					//	next(new Error(401)); // 401 Not Authorized
    								 }
 								});
 								router.get('/api/histories/count', function(req, res){
@@ -35,8 +49,6 @@ module.exports = function(resourceManager){
 								});
 								router.get('/api/'+name+'/:id', auth, function(req, res){
 													var id = req.params.id;
-													console.log('what is id?',id);
-													console.log('name',name);
 												resourceManager.models[name].findOne({_id: mongoose.Types.ObjectId(id)}, function(err, obj){
 
 													if(err) console.log(err);
@@ -80,11 +92,7 @@ module.exports = function(resourceManager){
 															});	
 													 }
 									 });
-									router.get('/api/responses/random', function(req, res){
-										Response.random(function(err, resp){
-											res.json(resp);				
-										});
-									});
+					
 								router.post('/api/'+name, function(req, res){
 												console.log('what is name?', name);
 												console.log(resourceManager);

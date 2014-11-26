@@ -25,7 +25,7 @@ router.post('/register', passport.authenticate('local', {
 				console.log(err);
 				return next(err);
 			}				
-			return res.redirect('/#/home');
+			return res.redirect('/#/');
 	});
 });
 
@@ -51,11 +51,10 @@ router.get('/loggedin', function(req, res){
 });
 
 router.post('/logout', function(req, res){
-	console.log('logging out');
-	console.log(req);
+				console.log('LOGGING OUTTTTTTTTT');
 	req.logOut();
 	
-	//res.redirect('/#/');	
+	res.redirect('/#/');	
 });
 
 module.exports = function(resourceManager, app){

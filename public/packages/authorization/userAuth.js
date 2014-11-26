@@ -7,38 +7,6 @@ var mongoose = require('mongoose'),
     User = mongoose.model('User');
 
 /**
- * Auth callback
- */
-module.exports.authCallback = function(req, res) {
-    res.redirect('/');
-};
-
-/**
- * Show login form
- */
-module.exports.signin = function(req, res) {
-    if(req.isAuthenticated()) {
-        return res.redirect('/');
-    }
-    res.redirect('#!/login');
-};
-
-/**
- * Logout
- */
-module.exports.signout = function(req, res) {
-    req.logout();
-    res.redirect('/');
-};
-
-/**
- * Session
- */
-module.exports.session = function(req, res) {
-    res.redirect('/');
-};
-
-/**
  * Create user
  */
 module.exports.create = function(req, res, next) {
@@ -66,25 +34,4 @@ module.exports.create = function(req, res, next) {
         res.status(200);
     });
 };
-/**
- * Send User
- */
-module.exports.me = function(req, res) {
-    res.jsonp(req.user || null);
-};
 
-/**
- * Find user by id
- */
-module.exports.user = function(req, res, next, id) {
-    User
-        .findOne({
-            _id: id
-        })
-        .exec(function(err, user) {
-            if (err) return next(err);
-            if (!user) return next(new Error('Failed to load User ' + id));
-            req.profile = user;
-            next();
-        });
-};
