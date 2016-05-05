@@ -1,15 +1,15 @@
 var mongoose = require('mongoose')
-		Schema = mongoose.Schema;
+Schema = mongoose.Schema;
 
 var productSchema = new Schema({
-	question:{
-		type:String,
-		required:true
-	},
-	isDefault:{
-		type:Boolean,
-		default:false	
-	}
+  question:{
+    type:String,
+    required:true
+  },
+  isDefault:{
+    type:Boolean,
+    default:false
+  }
 
 });
 

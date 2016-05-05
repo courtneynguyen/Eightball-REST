@@ -1,11 +1,11 @@
 <div ng-controller="userController" ng-init="getUsers()">
 
-				<h3>All Users</h3>
-	<ul ng-repeat="user in users">
-					<li><span>{{user.email}}</span> 
-									<span><a class="btn btn-sm btn-info pull-right" ui-sref="editUsers({id:user._id})">Edit</a></span>
-									 <span><a href="" ng-click="deleteUser(user)">Delete</a></span> 
-					</li>
-	</ul>
+  <h3>All Users</h3>
+  <ul ng-repeat="user in users">
+    <li><span>{{user.email}}</span>
+      <span><a class="btn btn-sm btn-info pull-right" ui-sref="editUsers({id:user._id})">Edit</a></span>
+      <span><a href="" ng-click="deleteUser(user)">Delete</a></span>
+    </li>
+  </ul>
 
 </div>

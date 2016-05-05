@@ -1,13 +1,13 @@
 <div ng-controller="responseController" ng-init="getResponses()">
 
-				<h3>All Responses</h3>
-	<ul ng-repeat="response in responses">
-					<li><span>{{response.question}} -- Count: {{response.count}}</span> 
-									
-									<span ng-show="!response.isDefault">
-								<span><a class="btn btn-sm btn-info pull-right" ui-sref="editResponse({id:response._id})">Edit</a></span>					
-									<a href="" ng-click="deleteResponse(response)">Delete</a></span>
-					</li>
-	</ul>
+  <h3>All Responses</h3>
+  <ul ng-repeat="response in responses">
+    <li><span>{{response.question}} -- Count: {{response.count}}</span>
 
-</div>
+      <span ng-show="!response.isDefault">
+        <span><a class="btn btn-sm btn-info pull-right" ui-sref="editResponse({id:response._id})">Edit</a></span>
+        <a href="" ng-click="deleteResponse(response)">Delete</a></span>
+      </li>
+    </ul>
+
+  </div>

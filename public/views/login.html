@@ -1,18 +1,17 @@
 <h1 class="page-header">Welcome Newcomer!</h1>
 
 
-								<h4>Sign in</h4>
-								<form ng-controller="authorizationController">
+<h4>Sign in</h4>
+<form ng-controller="authorizationController">
 
-												<label for="email-input">Email:</label>
-												<input ng-model="email" id="email-input" type="email" name="email" placeholder="Email"/><br />
-												<label for="pass-input">Password:</label>
-												<input ng-model="pass" id="pass-input" type="word" name="password" />
-												<p>
+  <label for="email-input">Email:</label>
+  <input ng-model="email" id="email-input" type="email" name="email" placeholder="Email"/><br />
+  <label for="pass-input">Password:</label>
+  <input ng-model="pass" id="pass-input" type="word" name="password" />
+  <p>
 
-																<input type="submit" ng-click="login({email:email,password: pass})" value="Log in" />
-												</p>
-								</form>
-								<br />
-								<a ui-sref="register">Don't have an account? Register here.</a>
-
+    <input type="submit" ng-click="login({email:email,password: pass})" value="Log in" />
+  </p>
+</form>
+<br />
+<a ui-sref="register">Don't have an account? Register here.</a>

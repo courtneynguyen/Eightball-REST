@@ -1,16 +1,16 @@
 <!-- <div ng-controller="magicBall"> -->
-				<div ng-controller="responseController">
-<h1>Magic Eightball</h1>
+<div ng-controller="responseController">
+  <h1>Magic Eightball</h1>
 
-<h4>Ask your question... </h4>
+  <h4>Ask your question... </h4>
 
 
-<form>
-	<input type="text" ng-model="quest" name="question" placeholder="Ask your Question..."/>
-	<input type="submit" value="Ask Away" ng-click="rollDice(quest)"/>
-	<span ng-show="!quest.length">{{questErr}}</span>
-</form>
+  <form>
+    <input type="text" ng-model="quest" name="question" placeholder="Ask your Question..."/>
+    <input type="submit" value="Ask Away" ng-click="rollDice(quest)"/>
+    <span ng-show="!quest.length">{{questErr}}</span>
+  </form>
 
-<input ng-model="magicEight.question" type="text" value="{{magicEight.question}}" disabled />
+  <input ng-model="magicEight.question" type="text" value="{{magicEight.question}}" disabled />
 </div>
 <!-- </div> -->

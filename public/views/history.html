@@ -1,6 +1,6 @@
 <div ng-controller="responseController" ng-init="getHistory()">
-				<h3>All History of user {{currentUser.email}} </h3>
-<ol ng-repeat="history in histories">
-				<li>{{history.question}} : {{history.response}}</li>
-</ol>
+  <h3>All History of user {{currentUser.email}} </h3>
+  <ol ng-repeat="history in histories">
+    <li>{{history.question}} : {{history.response}}</li>
+  </ol>
 </div>
