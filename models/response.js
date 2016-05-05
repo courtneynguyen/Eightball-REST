@@ -1,7 +1,7 @@
 var mongoose = require('mongoose')
 Schema = mongoose.Schema;
 
-var productSchema = new Schema({
+var responseSchema = new Schema({
   question:{
     type:String,
     required:true
@@ -13,7 +13,7 @@ var productSchema = new Schema({
 
 });
 
-productSchema.statics.random = function(cb) {
+responseSchema.statics.random = function(cb) {
   this.count(function(err, count) {
     if (err) return cb(err);
     var rand = Math.floor(Math.random() * count);

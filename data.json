@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 [
 {question:'It is certain',isDefault:true},
 {question:'It is decidedly so',isDefault:true},
@@ -20,12 +19,4 @@
 {question:'My sources say no',isDefault:true},
 {question:'Outlook not so good',isDefault:true},
 {question:'Very doubtful',isDefault:true}
-=======
-[{name:'Spongebob Squarepants the Movie II',
-price:20.00,
-description:'Childrens favorite superhero on the silver screen'},
-{name:'Courage the Cowardly Dog Plush',
-price:50.00,
-description:'Own the best dog in the world, as a plushie!'}
->>>>>>> 8193b2ab5fe74d959b24f25d8054f98a174844b9
 ]

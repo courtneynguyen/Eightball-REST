@@ -227,23 +227,29 @@ eightApp.config(function($stateProvider, $urlRouterProvider, $httpProvider, USER
     });
   });
 
-  eightApp.run(function($rootScope,$state,AuthService, AUTH_EVENTS){
+  eightApp.run(function($rootScope, $state, AuthService, AUTH_EVENTS){
     $rootScope.$on('$stateChangeStart', function (event, next) {
       console.log('what is next??');
       console.log(next);
-      var authorizedRoles = next.data.authorizedRoles;
-      if (!AuthService.isAuthorized(authorizedRoles)) {
-        event.preventDefault();
-        if (AuthService.isAuthenticated()) {
-          // user is not allowed
-          $rootScope.$broadcast(AUTH_EVENTS.notAuthorized);
-        } else {
-          // user is not logged in
+
+      if(next.data && next.data.authorizedRoles){
+        var authorizedRoles = next.data.authorizedRoles;
+        if (!AuthService.isAuthorized(authorizedRoles)) {
+          event.preventDefault();
+          if (AuthService.isAuthenticated()) {
+            // user is not allowed
+            $rootScope.$broadcast(AUTH_EVENTS.notAuthorized);
+          } else {
+            // user is not logged in
+            $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
+          }
+        }
+        else{
           $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
         }
       }
-      else{
-
+      else {
+        $rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
       }
     });
   });
