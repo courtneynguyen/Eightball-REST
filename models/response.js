@@ -21,5 +21,5 @@ responseSchema.statics.random = function(cb) {
   }.bind(this));
 };
 
-var Response = mongoose.model('Response', productSchema, 'responses');
+var Response = mongoose.model('Response', responseSchema, 'responses');
 module.exports = Response;
