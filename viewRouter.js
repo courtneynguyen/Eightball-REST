@@ -58,7 +58,13 @@ router.post('/logout', function(req, res){
 });
 
 module.exports = function(resourceManager, app){
-  app.use(session({secret: 'whateverisclevermate'}));
+  app.use(session(
+    {
+      secret: 'whateverisclevermate'
+      , resave: false
+      , saveUninitialized: true
+    }
+  ));
   app.use(passport.initialize());
   app.use(passport.session());
   manager = resourceManager;

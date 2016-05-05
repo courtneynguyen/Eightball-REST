@@ -39,4 +39,6 @@ app.use(crudProduct);
 
 app.use(viewRouter);
 
-app.listen(3080);
+app.listen(config.http.port, function(){
+  console.log("Application is running on " + config.http.port);
+});
